@@ -4,68 +4,51 @@ import(
 "fmt"
 "time"
 )
-var Timeset = 5 
-var Enable = false 
 
-func SetTime(timeset int){
-		Timeset = timeset
+var Timeset  int
+var	EnableTimer bool
+var	EnableEngine bool
+var	Pin bool
+
+func SetTimer(timeset int){
+		ptr := &Timeset 
+		*ptr = timeset
+		pt := &EnableTimer
+		*pt = true
 }
-func StartTime(){
-	for i:=0; i<Timeset; i++{
-		if Enable == true{
-			break
-		}
+
+func StartTimer(){
+	ptr := &EnableTimer
+	pt := &EnableEngine
+		for i:=Timeset; i>0; i--{
+			if Timeset == 0|| *ptr == false{
+				*ptr = false
+				*pt = true
+				break
+			}
 		fmt.Println(i)
+		time.Sleep(time.Second)
+		}
+}
+
+func StopTimer(){
+	ptr := &EnableTimer
+	*ptr = true
+}
+
+func SetEngine(pin *bool){
+	if *pin != true{
+		StartTimer()
+	}else{
 		time.Sleep(time.Second)
 	}
 }
-func StopTime(){
-	Enable = true
-}
 
-func SetEngine(*pin){
+func SetPower()bool{
 
-}
-
-func SetPower(){
-
-}
-
-
-
-
-func Getignition(timeset int, signalIn bool)bool{
-	t1:=time.Tick(1*time.Second)
-	for{
-		select {
-		case <-t1:
-			enable := detection(signalIn)
-			}
-			if enable == true{
-				break
-			}
-		}
-	t2:=time.Tick(time.Second)
-	for {
-			select {
-			case <-t2:
-				}
-			timeset-=1
-			fmt.Println(timeset)
-				if timeset < 1{
-					break
-				}
-		}
-	return true
-}
-
-func detection(engine bool) bool{
-	signalIn := engine
-	if signalIn == true{
-		fmt.Println("timer is unenable")
-		return false
-	}else{
-		fmt.Println("timer is enable")
+	if EnableEngine != false{
 		return true
+	}else{
+		return false
 	}
 }
