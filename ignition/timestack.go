@@ -5,11 +5,11 @@ import(
 "time"
 )
 
-func ignition(timeset int, signalIn bool)bool{
+func Getignition(timeset int, signalIn bool)bool{
 	t1:=time.Tick(1*time.Second)
 	for{
 		enable := detection(signalIn)
-		if !enable{
+		if enable{
 			break
 		}
 		select {
