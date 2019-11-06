@@ -12,14 +12,14 @@ func Getignition(timeset int, signalIn bool)bool{
 			break
 		}
 		select {
-			case <-t1
+		case <-t1:
 			enable := detection(signalIn)
 			}
 		}
 	t2:=time.Tick(time.Second)
 	for {
 			select {
-			case <-t2
+			case <-t2:
 				}
 			timeset-=1
 			fmt.Println(timeset)
