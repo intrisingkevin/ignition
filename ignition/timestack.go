@@ -8,12 +8,12 @@ import(
 func Getignition(timeset int, signalIn bool)bool{
 	t1:=time.Tick(1*time.Second)
 	for{
+		enable := detection(signalIn)
 		if enable == true{
 			break
 		}
 		select {
 		case <-t1:
-			enable := detection(signalIn)
 			}
 		}
 	t2:=time.Tick(time.Second)
@@ -23,7 +23,7 @@ func Getignition(timeset int, signalIn bool)bool{
 				}
 			timeset-=1
 			fmt.Println(timeset)
-				if i < 1{
+				if timeset < 1{
 					break
 				}
 		}
