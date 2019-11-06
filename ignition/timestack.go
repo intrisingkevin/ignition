@@ -33,7 +33,7 @@ func StartTimer(){
 
 func StopTimer(){
 	ptr := &EnableTimer
-	*ptr = true
+	*ptr = false
 }
 
 func SetEngine(pin *bool){
