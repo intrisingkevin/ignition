@@ -18,10 +18,10 @@ func StartTimer(){
 	t1:=time.NewTicker(1*time.Second)
 	defer t1.Stop()
 	for{
+		timeset--
 		select {
 		case <- t1.C:
 			fmt.Println(timeset)
-			timeset--
 			}
 		if timeset == 0|| enableTimer == false{
 			enableTimer = false
@@ -43,8 +43,9 @@ func SetEngine(callback func()bool) {
 	}
 }
 
-func SetPower(callback func()bool){
+func SetPower()(func()bool){
 	if enableEngine != false{
+		return true
 	}else{
 	}
 }
