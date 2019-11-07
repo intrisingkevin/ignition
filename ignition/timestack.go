@@ -5,50 +5,46 @@ import(
 "time"
 )
 
-var Timeset  int
-var	EnableTimer bool
-var	EnableEngine bool
-var	Pin bool
+var timeset  int = 5
+var	enableTimer bool = false
+var	enableEngine bool = false
 
-func SetTimer(timeset int){
-		ptr := &Timeset 
-		*ptr = timeset
-		pt := &EnableTimer
-		*pt = true
+func SetTimer(set int){
+		timeset = set
+		enableTimer = true
 }
 
 func StartTimer(){
-	ptr := &EnableTimer
-	pt := &EnableEngine
-		for i:=Timeset; i>0; i--{
-			if Timeset == 0|| *ptr == false{
-				*ptr = false
-				*pt = true
-				break
+	t1:=time.NewTicker(1*time.Second)
+	defer t1.Stop()
+	for{
+		select {
+		case <- t1.C:
+			fmt.Println(timeset)
+			timeset--
 			}
-		fmt.Println(i)
-		time.Sleep(time.Second)
+		if timeset == 0|| enableTimer == false{
+			enableTimer = false
+			enableEngine = true
+			break
 		}
-}
+	}
+	}
 
 func StopTimer(){
-	ptr := &EnableTimer
-	*ptr = false
+	enableTimer = false
 }
 
-func SetEngine(pin *bool){
-	if *pin != true{
+func SetEngine(callback func()bool) {
+	if  callback() != true{
 		StartTimer()
 	}else{
 		time.Sleep(time.Second)
 	}
 }
 
-func SetPower()bool{
-
-	if EnableEngine != false{
-		return true
+func SetPower(callback func()bool){
+	if enableEngine != false{
 	}else{
-		return false
 	}
 }
