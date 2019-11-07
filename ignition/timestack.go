@@ -22,8 +22,8 @@ func StartTimer(){
 		select {
 		case <- t1.C:
 			fmt.Println(timeset)
-			}
-		if timeset == 0|| enableTimer == false{
+		}
+		if timeset < 0|| enableTimer == false{
 			enableTimer = false
 			enableEngine = true
 			break
