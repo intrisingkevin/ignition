@@ -43,9 +43,10 @@ func SetEngine(callback func()bool) {
 	}
 }
 
-func SetPower()(func()bool){
+func SetPower()bool{
 	if enableEngine != false{
 		return true
 	}else{
+		return false
 	}
 }
