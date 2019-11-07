@@ -5,7 +5,7 @@ import(
 "time"
 )
 
-var timeset  int = 5 
+var timeset  int 
 var	enableTimer bool 
 var	enableEngine bool 
 
