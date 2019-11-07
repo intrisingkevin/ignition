@@ -5,9 +5,9 @@ import(
 "time"
 )
 
-var timeset  int = 5
-var	enableTimer bool = false
-var	enableEngine bool = false
+var timeset  int = 5 
+var	enableTimer bool 
+var	enableEngine bool 
 
 func SetTimer(set int){
 		timeset = set
