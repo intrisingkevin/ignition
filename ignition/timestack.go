@@ -15,6 +15,7 @@ func SetTimer(set int){
 }
 
 func StartTimer(){
+	if enableTimer == true{
 	t1:=time.NewTicker(1*time.Second)
 	defer t1.Stop()
 	for{
@@ -29,7 +30,10 @@ func StartTimer(){
 			break
 		}
 	}
+	}else{
+		fmt.Println("Please reset timer")
 	}
+}
 
 func StopTimer(){
 	enableTimer = false
